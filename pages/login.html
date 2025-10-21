@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - LNMS</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
+</head>
+<body>
+    <div class="auth-container">
+        <div class="auth-box">
+            <div class="auth-header">
+                <div class="logo" style="justify-content: center; margin-bottom: 1rem;">
+                    <i class="fas fa-graduation-cap"></i>
+                    <span class="logo-text">LNMS</span>
+                </div>
+                <h1>Welcome Back</h1>
+                <p>Login to your account</p>
+            </div>
+
+            <div id="alertContainer"></div>
+
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="email">
+                        <i class="fas fa-envelope"></i> Email Address
+                    </label>
+                    <input type="email" id="email" name="email" required placeholder="Enter your email">
+                </div>
+
+                <div class="form-group">
+                    <label for="password">
+                        <i class="fas fa-lock"></i> Password
+                    </label>
+                    <input type="password" id="password" name="password" required placeholder="Enter your password">
+                </div>
+
+                <button type="submit" class="btn-primary" style="width: 100%;">
+                    <span id="loginBtnText">Login</span>
+                    <span id="loginBtnLoading" class="loading hidden"></span>
+                </button>
+            </form>
+
+            <div class="auth-footer">
+                <p>Don't have an account? <a href="register.html">Register here</a></p>
+                <p><a href="../index.html">Back to Home</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="../js/auth.js"></script>
+</body>
+</html>

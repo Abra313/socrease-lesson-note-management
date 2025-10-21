@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Review Lessons - LNMS</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="manifest" href="../manifest.json">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <h2>
+                    <i class="fas fa-graduation-cap"></i>
+                    <span class="logo-text">LNMS</span>
+                </h2>
+            </div>
+            <ul class="sidebar-menu">
+                <li><a href="admin-dashboard.html"><i class="fas fa-home"></i> Dashboard</a></li>
+                <li><a href="review-lessons.html" class="active"><i class="fas fa-clipboard-check"></i> Review Lessons</a></li>
+                <li><a href="manage-teachers.html"><i class="fas fa-users"></i> Manage Teachers</a></li>
+                <li><a href="board-meeting.html"><i class="fas fa-bullhorn"></i> Board Meeting</a></li>
+                <li><a href="activity-logs.html"><i class="fas fa-history"></i> Activity Logs</a></li>
+                <li><a href="settings.html"><i class="fas fa-cog"></i> Settings</a></li>
+                <li><a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Bar -->
+            <div class="top-bar">
+                <div>
+                    <h1>Review Lesson Notes</h1>
+                    <p style="color: var(--text-light);">Evaluate and provide feedback on submitted lessons</p>
+                </div>
+                <div class="user-info">
+                    <div class="notification-icon">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-badge" id="notificationCount">0</span>
+                    </div>
+                    <div class="user-avatar" id="userAvatar">A</div>
+                </div>
+            </div>
+
+            <!-- Filter Options -->
+            <div class="content-card">
+                <h2><i class="fas fa-filter"></i> Filter Lessons</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+                    <div class="form-group">
+                        <label for="filterStatus">Status</label>
+                        <select id="filterStatus">
+                            <option value="all">All Lessons</option>
+                            <option value="pending" selected>Pending</option>
+                            <option value="approved">Approved</option>
+                            <option value="rejected">Rejected</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="filterSubject">Subject</label>
+                        <select id="filterSubject">
+                            <option value="all">All Subjects</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="filterClass">Class</label>
+                        <select id="filterClass">
+                            <option value="all">All Classes</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="filterTeacher">Teacher</label>
+                        <select id="filterTeacher">
+                            <option value="all">All Teachers</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Lessons List -->
+            <div class="content-card">
+                <h2><i class="fas fa-list"></i> Lesson Notes</h2>
+                <div class="lesson-notes-grid" id="lessonsList">
+                    <p style="color: var(--text-light); text-align: center; padding: 2rem;">Loading lessons...</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Review Modal -->
+    <div class="modal" id="reviewModal">
+        <div class="modal-content" style="max-width: 1000px;">
+            <div class="modal-header">
+                <h2><i class="fas fa-clipboard-check"></i> Review Lesson Note</h2>
+                <span class="modal-close" onclick="closeReviewModal()">
+                    <i class="fas fa-times"></i>
+                </span>
+            </div>
+            <div class="modal-body" id="reviewContent">
+                <!-- Lesson details will be loaded here -->
+            </div>
+            <div style="border-top: 2px solid var(--border-color); padding-top: 1.5rem; margin-top: 1.5rem;">
+                <h3 style="margin-bottom: 1rem;"><i class="fas fa-comment"></i> Admin Feedback</h3>
+                <div class="form-group">
+                    <textarea id="adminFeedback" placeholder="Enter your feedback here..." style="min-height: 100px;"></textarea>
+                </div>
+                <div style="display: flex; gap: 1rem; margin-top: 1rem;">
+                    <button class="btn-success" id="approveBtn">
+                        <i class="fas fa-check"></i> Approve
+                    </button>
+                    <button class="btn-danger" id="rejectBtn">
+                        <i class="fas fa-times"></i> Reject
+                    </button>
+                    <button class="btn-secondary" id="aiEvaluateOneBtn">
+                        <i class="fas fa-robot"></i> AI Evaluate
+                    </button>
+                    <button class="btn-outline" onclick="closeReviewModal()">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="../js/review-lessons.js"></script>
+</body>
+</html>

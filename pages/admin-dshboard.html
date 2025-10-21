@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - LNMS</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="manifest" href="../manifest.json">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <h2>
+                    <i class="fas fa-graduation-cap"></i>
+                    <span class="logo-text">LNMS</span>
+                </h2>
+            </div>
+            <ul class="sidebar-menu">
+                <li><a href="admin-dashboard.html" class="active"><i class="fas fa-home"></i> Dashboard</a></li>
+                <li><a href="review-lessons.html"><i class="fas fa-clipboard-check"></i> Review Lessons</a></li>
+                <li><a href="manage-teachers.html"><i class="fas fa-users"></i> Manage Teachers</a></li>
+                <li><a href="board-meeting.html"><i class="fas fa-bullhorn"></i> Board Meeting</a></li>
+                <li><a href="activity-logs.html"><i class="fas fa-history"></i> Activity Logs</a></li>
+                <li><a href="settings.html"><i class="fas fa-cog"></i> Settings</a></li>
+                <li><a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Bar -->
+            <div class="top-bar">
+                <div>
+                    <h1>Admin Dashboard</h1>
+                    <p style="color: var(--text-light);">Welcome back, Administrator!</p>
+                </div>
+                <div class="user-info">
+                    <div class="notification-icon">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-badge" id="notificationCount">0</span>
+                    </div>
+                    <div class="user-avatar" id="userAvatar">A</div>
+                </div>
+            </div>
+
+            <!-- Dashboard Stats -->
+            <div class="dashboard-stats">
+                <div class="stat-card-dashboard">
+                    <div class="stat-icon blue">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="totalTeachers">0</h3>
+                        <p>Total Teachers</p>
+                    </div>
+                </div>
+
+                <div class="stat-card-dashboard">
+                    <div class="stat-icon green">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="totalLessons">0</h3>
+                        <p>Total Lessons</p>
+                    </div>
+                </div>
+
+                <div class="stat-card-dashboard">
+                    <div class="stat-icon orange">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="pendingReview">0</h3>
+                        <p>Pending Review</p>
+                    </div>
+                </div>
+
+                <div class="stat-card-dashboard">
+                    <div class="stat-icon red">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="aiGenerated">0</h3>
+                        <p>AI Generated</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Charts Section -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;">
+                <div class="content-card">
+                    <h2><i class="fas fa-chart-pie"></i> Lesson Status Distribution</h2>
+                    <canvas id="statusChart" style="max-height: 300px;"></canvas>
+                </div>
+
+                <div class="content-card">
+                    <h2><i class="fas fa-chart-bar"></i> Monthly Submissions</h2>
+                    <canvas id="monthlyChart" style="max-height: 300px;"></canvas>
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="content-card">
+                <h2><i class="fas fa-bolt"></i> Quick Actions</h2>
+                <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                    <a href="review-lessons.html" class="btn-primary">
+                        <i class="fas fa-clipboard-check"></i> Review Pending Lessons
+                    </a>
+                    <a href="board-meeting.html" class="btn-secondary">
+                        <i class="fas fa-bullhorn"></i> Post Announcement
+                    </a>
+                    <button class="btn-outline" id="aiEvaluateBtn">
+                        <i class="fas fa-robot"></i> AI Batch Evaluation
+                    </button>
+                    <a href="activity-logs.html" class="btn-outline">
+                        <i class="fas fa-history"></i> View Activity Logs
+                    </a>
+                </div>
+            </div>
+
+            <!-- Pending Reviews -->
+            <div class="content-card">
+                <h2><i class="fas fa-hourglass-half"></i> Lessons Pending Review</h2>
+                <div class="lesson-notes-grid" id="pendingLessons">
+                    <p style="color: var(--text-light); text-align: center; padding: 2rem;">Loading pending lessons...</p>
+                </div>
+            </div>
+
+            <!-- Recent Activity -->
+            <div class="content-card">
+                <h2><i class="fas fa-history"></i> Recent Activity</h2>
+                <div id="recentActivity">
+                    <p style="color: var(--text-light); text-align: center; padding: 2rem;">Loading activity...</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- AI Evaluation Modal -->
+    <div class="modal" id="aiEvaluateModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-robot"></i> AI Batch Evaluation</h2>
+                <span class="modal-close" onclick="closeAiEvaluateModal()">
+                    <i class="fas fa-times"></i>
+                </span>
+            </div>
+            <div class="modal-body">
+                <p style="margin-bottom: 1rem;">The AI will evaluate all pending lesson notes for completeness, clarity, and curriculum alignment. This will help you prioritize your reviews.</p>
+                <div class="alert alert-info">
+                    <i class="fas fa-info-circle"></i>
+                    <span>AI evaluation provides suggestions only. Final approval is your decision.</span>
+                </div>
+                <div id="evaluationProgress" class="hidden">
+                    <p>Evaluating lessons... <span id="evalProgress">0</span>/<span id="evalTotal">0</span></p>
+                    <div style="background: var(--bg-light); height: 20px; border-radius: 10px; overflow: hidden; margin-top: 1rem;">
+                        <div id="evalProgressBar" style="background: var(--secondary-color); height: 100%; width: 0%; transition: width 0.3s;"></div>
+                    </div>
+                </div>
+                <div style="display: flex; gap: 1rem; margin-top: 1.5rem;">
+                    <button class="btn-primary" id="startAiEvaluation">
+                        <i class="fas fa-play"></i> Start Evaluation
+                    </button>
+                    <button class="btn-outline" onclick="closeAiEvaluateModal()">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="../js/admin-dashboard.js"></script>
+</body>
+</html>

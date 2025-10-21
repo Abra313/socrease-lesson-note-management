@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Lesson - LNMS</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="manifest" href="../manifest.json">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <h2>
+                    <i class="fas fa-graduation-cap"></i>
+                    <span class="logo-text">LNMS</span>
+                </h2>
+            </div>
+            <ul class="sidebar-menu">
+                <li><a href="teacher-dashboard.html"><i class="fas fa-home"></i> Dashboard</a></li>
+                <li><a href="create-lesson.html" class="active"><i class="fas fa-plus-circle"></i> Create Lesson</a></li>
+                <li><a href="my-lessons.html"><i class="fas fa-book"></i> My Lessons</a></li>
+                <li><a href="notifications.html"><i class="fas fa-bell"></i> Notifications</a></li>
+                <li><a href="profile.html"><i class="fas fa-user"></i> Profile</a></li>
+                <li><a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Bar -->
+            <div class="top-bar">
+                <div>
+                    <h1>Create Lesson Note</h1>
+                    <p style="color: var(--text-light);">Fill in the details or use AI to generate</p>
+                </div>
+                <div class="user-info">
+                    <div class="notification-icon">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-badge" id="notificationCount">0</span>
+                    </div>
+                    <div class="user-avatar" id="userAvatar">T</div>
+                </div>
+            </div>
+
+            <div id="alertContainer"></div>
+
+            <!-- Lesson Form -->
+            <div class="content-card">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+                    <h2><i class="fas fa-edit"></i> Lesson Details</h2>
+                    <div style="display: flex; gap: 0.5rem;">
+                        <button class="btn-secondary" id="aiGenerateBtn">
+                            <i class="fas fa-magic"></i> Generate with AI
+                        </button>
+                        <button class="btn-outline" id="saveDraftBtn">
+                            <i class="fas fa-save"></i> Save Draft
+                        </button>
+                    </div>
+                </div>
+
+                <form id="lessonForm">
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
+                        <div class="form-group">
+                            <label for="subject">
+                                <i class="fas fa-book"></i> Subject *
+                            </label>
+                            <select id="subject" name="subject" required>
+                                <option value="">Select Subject</option>
+                                <option value="Mathematics">Mathematics</option>
+                                <option value="English Language">English Language</option>
+                                <option value="Basic Science">Basic Science</option>
+                                <option value="Social Studies">Social Studies</option>
+                                <option value="Agricultural Science">Agricultural Science</option>
+                                <option value="Computer Studies">Computer Studies</option>
+                                <option value="Christian Religious Studies">Christian Religious Studies</option>
+                                <option value="Islamic Religious Studies">Islamic Religious Studies</option>
+                                <option value="Physical Education">Physical Education</option>
+                                <option value="Home Economics">Home Economics</option>
+                                <option value="Creative Arts">Creative Arts</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="class">
+                                <i class="fas fa-users"></i> Class *
+                            </label>
+                            <select id="class" name="class" required>
+                                <option value="">Select Class</option>
+                                <option value="Primary 1">Primary 1</option>
+                                <option value="Primary 2">Primary 2</option>
+                                <option value="Primary 3">Primary 3</option>
+                                <option value="Primary 4">Primary 4</option>
+                                <option value="Primary 5">Primary 5</option>
+                                <option value="Primary 6">Primary 6</option>
+                                <option value="JSS 1">JSS 1</option>
+                                <option value="JSS 2">JSS 2</option>
+                                <option value="JSS 3">JSS 3</option>
+                                <option value="SS 1">SS 1</option>
+                                <option value="SS 2">SS 2</option>
+                                <option value="SS 3">SS 3</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="week">
+                                <i class="fas fa-calendar"></i> Week *
+                            </label>
+                            <select id="week" name="week" required>
+                                <option value="">Select Week</option>
+                                <option value="1">Week 1</option>
+                                <option value="2">Week 2</option>
+                                <option value="3">Week 3</option>
+                                <option value="4">Week 4</option>
+                                <option value="5">Week 5</option>
+                                <option value="6">Week 6</option>
+                                <option value="7">Week 7</option>
+                                <option value="8">Week 8</option>
+                                <option value="9">Week 9</option>
+                                <option value="10">Week 10</option>
+                                <option value="11">Week 11</option>
+                                <option value="12">Week 12</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="term">
+                                <i class="fas fa-calendar-alt"></i> Term *
+                            </label>
+                            <select id="term" name="term" required>
+                                <option value="">Select Term</option>
+                                <option value="First Term">First Term</option>
+                                <option value="Second Term">Second Term</option>
+                                <option value="Third Term">Third Term</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="topic">
+                            <i class="fas fa-heading"></i> Topic *
+                        </label>
+                        <input type="text" id="topic" name="topic" required placeholder="Enter lesson topic">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="objectives">
+                            <i class="fas fa-bullseye"></i> Learning Objectives *
+                        </label>
+                        <textarea id="objectives" name="objectives" required placeholder="Enter learning objectives (one per line)"></textarea>
+                        <button type="button" class="btn-small btn-secondary mt-1" onclick="aiImproveSection('objectives')">
+                            <i class="fas fa-magic"></i> Improve with AI
+                        </button>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="materials">
+                            <i class="fas fa-tools"></i> Instructional Materials *
+                        </label>
+                        <textarea id="materials" name="materials" required placeholder="List instructional materials needed"></textarea>
+                        <button type="button" class="btn-small btn-secondary mt-1" onclick="aiImproveSection('materials')">
+                            <i class="fas fa-magic"></i> Improve with AI
+                        </button>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="introduction">
+                            <i class="fas fa-play-circle"></i> Introduction
+                        </label>
+                        <textarea id="introduction" name="introduction" placeholder="How will you introduce the lesson?"></textarea>
+                        <button type="button" class="btn-small btn-secondary mt-1" onclick="aiImproveSection('introduction')">
+                            <i class="fas fa-magic"></i> Improve with AI
+                        </button>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="development">
+                            <i class="fas fa-tasks"></i> Lesson Development *
+                        </label>
+                        <textarea id="development" name="development" required placeholder="Describe the step-by-step lesson development" style="min-height: 200px;"></textarea>
+                        <button type="button" class="btn-small btn-secondary mt-1" onclick="aiImproveSection('development')">
+                            <i class="fas fa-magic"></i> Improve with AI
+                        </button>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="evaluation">
+                            <i class="fas fa-question-circle"></i> Evaluation Questions *
+                        </label>
+                        <textarea id="evaluation" name="evaluation" required placeholder="Enter evaluation questions"></textarea>
+                        <button type="button" class="btn-small btn-secondary mt-1" onclick="aiImproveSection('evaluation')">
+                            <i class="fas fa-magic"></i> Improve with AI
+                        </button>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="conclusion">
+                            <i class="fas fa-flag-checkered"></i> Conclusion
+                        </label>
+                        <textarea id="conclusion" name="conclusion" placeholder="How will you conclude the lesson?"></textarea>
+                        <button type="button" class="btn-small btn-secondary mt-1" onclick="aiImproveSection('conclusion')">
+                            <i class="fas fa-magic"></i> Improve with AI
+                        </button>
+                    </div>
+
+                    <div style="display: flex; gap: 1rem; margin-top: 2rem;">
+                        <button type="submit" class="btn-primary">
+                            <i class="fas fa-paper-plane"></i> Submit for Review
+                        </button>
+                        <button type="button" class="btn-outline" id="previewBtn">
+                            <i class="fas fa-eye"></i> Preview
+                        </button>
+                        <a href="teacher-dashboard.html" class="btn-secondary">
+                            <i class="fas fa-times"></i> Cancel
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </main>
+    </div>
+
+    <!-- AI Generation Modal -->
+    <div class="modal" id="aiModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-robot"></i> AI Lesson Generator</h2>
+                <span class="modal-close" onclick="closeAiModal()">
+                    <i class="fas fa-times"></i>
+                </span>
+            </div>
+            <div class="modal-body">
+                <p style="margin-bottom: 1rem;">The AI will generate a complete lesson note based on the subject, class, week, and topic you've entered. Make sure these fields are filled before generating.</p>
+                <div class="alert alert-info">
+                    <i class="fas fa-info-circle"></i>
+                    <span>You can edit the AI-generated content after it's created.</span>
+                </div>
+                <div style="display: flex; gap: 1rem; margin-top: 1.5rem;">
+                    <button class="btn-primary" id="confirmAiGenerate">
+                        <i class="fas fa-magic"></i> Generate Lesson
+                    </button>
+                    <button class="btn-outline" onclick="closeAiModal()">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Preview Modal -->
+    <div class="modal" id="previewModal">
+        <div class="modal-content" style="max-width: 900px;">
+            <div class="modal-header">
+                <h2><i class="fas fa-eye"></i> Lesson Preview</h2>
+                <span class="modal-close" onclick="closePreviewModal()">
+                    <i class="fas fa-times"></i>
+                </span>
+            </div>
+            <div class="modal-body" id="previewContent">
+                <!-- Preview content will be inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="../js/create-lesson.js"></script>
+</body>
+</html>

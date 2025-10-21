@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Teachers - LNMS</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="manifest" href="../manifest.json">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <h2>
+                    <i class="fas fa-graduation-cap"></i>
+                    <span class="logo-text">LNMS</span>
+                </h2>
+            </div>
+            <ul class="sidebar-menu">
+                <li><a href="admin-dashboard.html"><i class="fas fa-home"></i> Dashboard</a></li>
+                <li><a href="review-lessons.html"><i class="fas fa-clipboard-check"></i> Review Lessons</a></li>
+                <li><a href="manage-teachers.html" class="active"><i class="fas fa-users"></i> Manage Teachers</a></li>
+                <li><a href="board-meeting.html"><i class="fas fa-bullhorn"></i> Board Meeting</a></li>
+                <li><a href="activity-logs.html"><i class="fas fa-history"></i> Activity Logs</a></li>
+                <li><a href="settings.html"><i class="fas fa-cog"></i> Settings</a></li>
+                <li><a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Bar -->
+            <div class="top-bar">
+                <div>
+                    <h1>Manage Teachers</h1>
+                    <p style="color: var(--text-light);">Approve and manage teacher accounts</p>
+                </div>
+                <div class="user-info">
+                    <div class="notification-icon">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-badge" id="notificationCount">0</span>
+                    </div>
+                    <div class="user-avatar" id="userAvatar">A</div>
+                </div>
+            </div>
+
+            <div id="alertContainer"></div>
+
+            <!-- Pending Approvals -->
+            <div class="content-card">
+                <h2><i class="fas fa-user-clock"></i> Pending Approvals</h2>
+                <div id="pendingTeachers">
+                    <p style="color: var(--text-light); text-align: center; padding: 2rem;">Loading pending teachers...</p>
+                </div>
+            </div>
+
+            <!-- Approved Teachers -->
+            <div class="content-card">
+                <h2><i class="fas fa-user-check"></i> Approved Teachers</h2>
+                <div id="approvedTeachers">
+                    <p style="color: var(--text-light); text-align: center; padding: 2rem;">Loading approved teachers...</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script type="module" src="../js/manage-teachers.js"></script>
+</body>
+</html>

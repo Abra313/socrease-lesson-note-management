@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Dashboard - LNMS</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="manifest" href="../manifest.json">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <h2>
+                    <i class="fas fa-graduation-cap"></i>
+                    <span class="logo-text">LNMS</span>
+                </h2>
+            </div>
+            <ul class="sidebar-menu">
+                <li><a href="teacher-dashboard.html" class="active"><i class="fas fa-home"></i> Dashboard</a></li>
+                <li><a href="create-lesson.html"><i class="fas fa-plus-circle"></i> Create Lesson</a></li>
+                <li><a href="my-lessons.html"><i class="fas fa-book"></i> My Lessons</a></li>
+                <li><a href="notifications.html"><i class="fas fa-bell"></i> Notifications</a></li>
+                <li><a href="profile.html"><i class="fas fa-user"></i> Profile</a></li>
+                <li><a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Bar -->
+            <div class="top-bar">
+                <div>
+                    <h1>Teacher Dashboard</h1>
+                    <p style="color: var(--text-light);">Welcome back, <span id="userName">Teacher</span>!</p>
+                </div>
+                <div class="user-info">
+                    <div class="notification-icon">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-badge" id="notificationCount">0</span>
+                    </div>
+                    <div class="user-avatar" id="userAvatar">T</div>
+                </div>
+            </div>
+
+            <!-- Dashboard Stats -->
+            <div class="dashboard-stats">
+                <div class="stat-card-dashboard">
+                    <div class="stat-icon blue">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="totalNotes">0</h3>
+                        <p>Total Lessons</p>
+                    </div>
+                </div>
+
+                <div class="stat-card-dashboard">
+                    <div class="stat-icon orange">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="pendingNotes">0</h3>
+                        <p>Pending Review</p>
+                    </div>
+                </div>
+
+                <div class="stat-card-dashboard">
+                    <div class="stat-icon green">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="approvedNotes">0</h3>
+                        <p>Approved</p>
+                    </div>
+                </div>
+
+                <div class="stat-card-dashboard">
+                    <div class="stat-icon red">
+                        <i class="fas fa-times-circle"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="rejectedNotes">0</h3>
+                        <p>Rejected</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="content-card">
+                <h2><i class="fas fa-bolt"></i> Quick Actions</h2>
+                <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                    <a href="create-lesson.html" class="btn-primary">
+                        <i class="fas fa-plus"></i> Create New Lesson
+                    </a>
+                    <button class="btn-secondary" id="aiAssistBtn">
+                        <i class="fas fa-robot"></i> AI Assistant
+                    </button>
+                    <a href="my-lessons.html" class="btn-outline">
+                        <i class="fas fa-list"></i> View All Lessons
+                    </a>
+                </div>
+            </div>
+
+            <!-- Recent Lessons -->
+            <div class="content-card">
+                <h2><i class="fas fa-history"></i> Recent Lessons</h2>
+                <div class="lesson-notes-grid" id="recentLessons">
+                    <p style="color: var(--text-light); text-align: center; padding: 2rem;">Loading lessons...</p>
+                </div>
+            </div>
+
+            <!-- Board Announcements -->
+            <div class="content-card">
+                <h2><i class="fas fa-bullhorn"></i> Board Announcements</h2>
+                <div id="announcements">
+                    <p style="color: var(--text-light); text-align: center; padding: 2rem;">No announcements at this time.</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- AI Assistant -->
+    <div class="ai-assistant">
+        <button class="ai-toggle" id="aiToggle">
+            <i class="fas fa-robot"></i>
+        </button>
+        <div class="ai-chat-window" id="aiChatWindow">
+            <div class="ai-chat-header">
+                <h3>AI Assistant</h3>
+                <button class="modal-close" id="aiClose">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="ai-chat-body" id="aiChatBody">
+                <div class="ai-message assistant">
+                    Hello! I'm your AI assistant. I can help you:
+                    <ul style="margin-top: 0.5rem;">
+                        <li>Generate lesson notes</li>
+                        <li>Improve your content</li>
+                        <li>Answer questions about curriculum</li>
+                        <li>Provide teaching tips</li>
+                    </ul>
+                    How can I assist you today?
+                </div>
+            </div>
+            <div class="ai-chat-input">
+                <input type="text" id="aiInput" placeholder="Ask me anything...">
+                <button class="btn-primary" id="aiSend">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="../js/teacher-dashboard.js"></script>
+</body>
+</html>
