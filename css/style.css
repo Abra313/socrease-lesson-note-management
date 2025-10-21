@@ -116,7 +116,7 @@ h1, h2, h3 {
 
 .btn-primary {
     /* background: var(--primary-color); */
-    background-color: yellow;
+    background-color: rgb(88, 88, 5);
     color: white;
     /* color: white; */
 }
@@ -125,7 +125,7 @@ h1, h2, h3 {
     background: var(--secondary-color);
     transform: translateY(-2px);
     box-shadow: var(--shadow-hover);
-    color: yellow;
+    color: rgb(59, 59, 2);
 }
 
 .btn-secondary {
@@ -1062,7 +1062,7 @@ h1, h2, h3 {
     }
     
     .mobile-menu-toggle {
-        display: block;
+        display: none;
     }
     
     .hero {
